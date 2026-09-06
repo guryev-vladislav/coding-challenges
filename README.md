@@ -1,37 +1,37 @@
-# Решения задач по алгоритмам
+# Algorithmic Task Solutions
 
-Решения задач из соревнований и учебных контестов. Все решения написаны на Go.
+Solutions to tasks from programming competitions and practice contests. All solutions are written in Go.
 
-## Структура
+## Structure
 
-Каталоги организованы по источнику задач, году и отдельной задаче:
+Directories are organized by platform, year, and individual task:
 
 ```text
-<источник>/<год>/<задача>/
+<platform>/<year>/<task>/
 ├── README.md
-├── <задача>.go
-└── <задача>_test.go  # если для задачи есть автоматические тесты
+├── <task>.go
+└── <task>_test.go  # when automated tests are available
 ```
 
 - [True Tech Champ 2025](truetechchamp/2025/README.md)
 - [Yandex Contest 2025](yandex_contest/2025/README.md)
 
-## Проверка решений
+## Running Tests
 
-Из корня репозитория выполните:
+Run this command from the repository root:
 
 ```bash
 go test ./...
 ```
 
-Тесты находятся рядом с кодом соответствующей задачи и принадлежат тому же Go-пакету. Это позволяет запускать тесты одной задачи отдельно:
+Tests are stored next to the corresponding solution and belong to the same Go package. To run tests for one task:
 
 ```bash
 go test ./truetechchamp/2025/max_cashback
 ```
 
-Задачи без файла `_test.go` сейчас проверяются только компиляцией и ручным запуском с примерами из README.
+Tasks without a `_test.go` file are currently checked only by compilation and manual execution with the examples from their README.
 
-## Файлы
+## Files
 
-- Исходный код задач находится в каталогах соревнований и годов, указанных выше.
+- Source code is stored in the competition and year directories listed above.

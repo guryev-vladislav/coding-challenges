@@ -1,7 +1,7 @@
 # Yandex Contest 2025
 
-## Задачи
+## Tasks
 
-- [Словарь синонимов](map_synonyms/README.md)
-- [Ближайшее число](nearest_number/README.md)
-- [Языки](polyglots/README.md)
+- [Synonym Dictionary](map_synonyms/README.md)
+- [Nearest Number](nearest_number/README.md)
+- [Polyglots](polyglots/README.md)

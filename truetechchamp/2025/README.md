@@ -1,12 +1,12 @@
 # True Tech Champ 2025
 
-Алгоритмический трек соревнования True Tech Champ 2025.
+Tasks from the Algorithmic track of True Tech Champ 2025.
 
-## Задачи
+## Tasks
 
-- [Максимальный кешбэк](max_cashback/README.md)
-- [Телефонные номера](phone_numbers/README.md)
-- [Отражения сигнала](signal_reflections/README.md)
-- [Сигнал от базовых станций](signal_stations/README.md)
-- [Детализация и вирус](call_details_recovery/README.md)
-- [Просто квадрат](just_square/README.md)
+- [Maximum Cashback](max_cashback/README.md)
+- [Phone Numbers](phone_numbers/README.md)
+- [Signal Reflections](signal_reflections/README.md)
+- [Signal from Base Stations](signal_stations/README.md)
+- [Call Details and Virus](call_details_recovery/README.md)
+- [Just a Square](just_square/README.md)
