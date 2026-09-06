@@ -1,17 +1,37 @@
-# CODING-CHALLENGES
-This repository contains my solutions to problems from programming competitions, coding challenges, and hackathons. Solutions are organized by competition platform and event year for easy navigation and reference.
+# Решения задач по алгоритмам
 
-## Competitions
-- TrueTech Champ (2025)
-- Yandex Contest (2025)
+Решения задач из соревнований и учебных контестов. Все решения написаны на Go.
 
-## Features
-- Clean, well-structured Go code following best practices
-- Organized by competition platform and year for easy navigation
-- Comprehensive problem-solving approaches and algorithms
-- Optimized solutions for competitive programming challenges
-- Modular code structure for reusability and maintenance
+## Структура
 
-## Technologies
-- Go
+Каталоги организованы по источнику задач, году и отдельной задаче:
 
+```text
+<источник>/<год>/<задача>/
+├── README.md
+├── <задача>.go
+└── <задача>_test.go  # если для задачи есть автоматические тесты
+```
+
+- [True Tech Champ 2025](truetechchamp/2025/README.md)
+- [Yandex Contest 2025](yandex_contest/2025/README.md)
+
+## Проверка решений
+
+Из корня репозитория выполните:
+
+```bash
+go test ./...
+```
+
+Тесты находятся рядом с кодом соответствующей задачи и принадлежат тому же Go-пакету. Это позволяет запускать тесты одной задачи отдельно:
+
+```bash
+go test ./truetechchamp/2025/max_cashback
+```
+
+Задачи без файла `_test.go` сейчас проверяются только компиляцией и ручным запуском с примерами из README.
+
+## Файлы
+
+- Исходный код задач находится в каталогах соревнований и годов, указанных выше.
