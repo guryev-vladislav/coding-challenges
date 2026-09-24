@@ -50,4 +50,4 @@
 ## Файлы
 
 - Решение: [signal_reflections.go](signal_reflections.go)
-- Автоматические тесты: не добавлены
+- Тесты: [signal_reflections_test.go](signal_reflections_test.go)

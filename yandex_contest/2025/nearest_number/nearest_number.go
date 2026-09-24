@@ -10,8 +10,8 @@ import (
 )
 
 func NearestNumber(elements []int, x int) int {
-
 	closest := elements[0]
+
 	minDiff := math.Abs(float64(elements[0] - x))
 	for _, element := range elements {
 		diff := math.Abs(float64(element - x))
@@ -22,25 +22,49 @@ func NearestNumber(elements []int, x int) int {
 	}
 
 	return closest
-
 }
 
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
-	scanner.Scan()
-	n, _ := strconv.Atoi(scanner.Text())
-
-	scanner.Scan()
-	elementsStr := strings.Split(scanner.Text(), " ")
-	elements := make([]int, n)
-	for i, s := range elementsStr {
-		elements[i], _ = strconv.Atoi(s)
+	if !scanner.Scan() {
+		return
 	}
 
-	scanner.Scan()
-	x, _ := strconv.Atoi(scanner.Text())
+	elementCount, err := strconv.Atoi(scanner.Text())
+	if err != nil {
+		return
+	}
 
-	closest := NearestNumber(elements, x)
+	if !scanner.Scan() {
+		return
+	}
 
-	fmt.Println(closest)
+	elementsStr := strings.Split(scanner.Text(), " ")
+
+	elements := make([]int, elementCount)
+	for i, s := range elementsStr {
+		elements[i], err = strconv.Atoi(s)
+		if err != nil {
+			return
+		}
+	}
+
+	if !scanner.Scan() {
+		return
+	}
+
+	target, err := strconv.Atoi(scanner.Text())
+	if err != nil {
+		return
+	}
+
+	if err := scanner.Err(); err != nil {
+		return
+	}
+
+	closest := NearestNumber(elements, target)
+
+	if _, err := fmt.Fprintln(os.Stdout, closest); err != nil {
+		return
+	}
 }

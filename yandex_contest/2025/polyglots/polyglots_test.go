@@ -5,6 +5,14 @@ import (
 	"testing"
 )
 
+const (
+	english = "English"
+	french  = "French"
+	russian = "Russian"
+	spanish = "Spanish"
+	german  = "German"
+)
+
 func TestPolyglots(t *testing.T) {
 	tests := []struct {
 		name      string
@@ -15,22 +23,22 @@ func TestPolyglots(t *testing.T) {
 		{
 			name: "valid input",
 			students: [][]string{
-				{"English", "Russian", "French"},
-				{"English", "Russian", "Spanish"},
-				{"English", "Russian", "German"},
+				{english, russian, french},
+				{english, russian, spanish},
+				{english, russian, german},
 			},
-			common:    []string{"English", "Russian"},
-			allUnique: []string{"English", "French", "German", "Russian", "Spanish"},
+			common:    []string{english, russian},
+			allUnique: []string{english, french, german, russian, spanish},
 		},
 		{
 			name: "nil common languages input",
 			students: [][]string{
-				{"English", "French"},
-				{"Russian", "Spanish"},
-				{"Korean", "German"},
+				{english, french},
+				{russian, spanish},
+				{"Korean", german},
 			},
 			common:    []string{},
-			allUnique: []string{"English", "French", "German", "Korean", "Russian", "Spanish"},
+			allUnique: []string{english, french, german, "Korean", russian, spanish},
 		},
 	}
 
@@ -40,6 +48,7 @@ func TestPolyglots(t *testing.T) {
 			if !reflect.DeepEqual(polyglots.commonLanguages, tt.common) {
 				t.Errorf("Polyglots().commonLanguages = %v, want %v", polyglots.commonLanguages, tt.common)
 			}
+
 			if !reflect.DeepEqual(polyglots.allUniqueLanguages, tt.allUnique) {
 				t.Errorf("Polyglots().allUniqueLanguages = %v, want %v", polyglots.allUniqueLanguages, tt.allUnique)
 			}

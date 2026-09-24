@@ -3,9 +3,19 @@ package mapsynonyms
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"os"
 	"strings"
 )
+
+func readLine(reader *bufio.Reader) (string, bool) {
+	line, err := reader.ReadString('\n')
+	if err != nil && err != io.EOF {
+		return "", false
+	}
+
+	return line, true
+}
 
 func MapSynonyms(lines []string, targetWord string) (string, bool) {
 	synonyms := make(map[string]string, len(lines)*2)
@@ -27,22 +37,40 @@ func MapSynonyms(lines []string, targetWord string) (string, bool) {
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 
-	var n int
-	fmt.Fscan(reader, &n)
-	reader.ReadString('\n')
-
-	lines := make([]string, n)
-	for i := range n {
-		lines[i], _ = reader.ReadString('\n')
+	var lineCount int
+	if _, err := fmt.Fscan(reader, &lineCount); err != nil {
+		return
 	}
 
-	targetWord, _ := reader.ReadString('\n')
+	if _, ok := readLine(reader); !ok {
+		return
+	}
+
+	lines := make([]string, lineCount)
+	for i := range lineCount {
+		line, ok := readLine(reader)
+		if !ok {
+			return
+		}
+
+		lines[i] = line
+	}
+
+	targetWord, ok := readLine(reader)
+	if !ok {
+		return
+	}
+
 	targetWord = strings.TrimSpace(targetWord)
 
 	synonym, ok := MapSynonyms(lines, targetWord)
 	if ok {
-		fmt.Println(synonym)
+		if _, err := fmt.Fprintln(os.Stdout, synonym); err != nil {
+			return
+		}
 	} else {
-		fmt.Println("None")
+		if _, err := fmt.Fprintln(os.Stdout, "None"); err != nil {
+			return
+		}
 	}
 }

@@ -9,35 +9,60 @@ import (
 )
 
 func SignalStations(signal1, signal2, signal3 int) int {
-	a := signal1 + signal2
-	b := signal3 + signal2
-	c := signal3 + signal1
-	sides := []int{a, b, c}
+	firstSide := signal1 + signal2
+	secondSide := signal3 + signal2
+	thirdSide := signal3 + signal1
+	sides := []int{firstSide, secondSide, thirdSide}
 	sort.Ints(sides)
 
 	if sides[0]+sides[1] <= sides[2] {
 		return -1
 	}
 
-	s := (a + b + c) / 2
-	area := (s * (s - a) * (s - b) * (s - c))
+	semiperimeter := (firstSide + secondSide + thirdSide) / 2
+	area := semiperimeter * (semiperimeter - firstSide) *
+		(semiperimeter - secondSide) * (semiperimeter - thirdSide)
 
 	return area
 }
 
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
-	scanner.Scan()
-	signal1, _ := strconv.Atoi(scanner.Text())
-	scanner.Scan()
-	signal2, _ := strconv.Atoi(scanner.Text())
-	scanner.Scan()
-	signal3, _ := strconv.Atoi(scanner.Text())
+	values := make([]int, 3)
 
-	area := SignalStations(signal1, signal2, signal3)
+	for index := range values {
+		if !scanner.Scan() {
+			return
+		}
+
+		value, err := strconv.Atoi(scanner.Text())
+		if err != nil {
+			return
+		}
+
+		values[index] = value
+	}
+
+	if err := scanner.Err(); err != nil {
+		return
+	}
+
+	area := SignalStations(values[0], values[1], values[2])
+
+	writer := bufio.NewWriter(os.Stdout)
+	defer func() {
+		if err := writer.Flush(); err != nil {
+			return
+		}
+	}()
+
 	if area == -1 {
-		fmt.Println(area)
+		if _, err := fmt.Fprintln(writer, area); err != nil {
+			return
+		}
 	} else {
-		fmt.Println(area, area)
+		if _, err := fmt.Fprintln(writer, area, area); err != nil {
+			return
+		}
 	}
 }

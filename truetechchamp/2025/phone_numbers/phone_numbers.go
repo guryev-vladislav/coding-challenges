@@ -8,7 +8,6 @@ import (
 )
 
 func PhoneNumberCurrent(input string) bool {
-
 	if len(input)%11 != 0 {
 		return false
 	}
@@ -25,19 +24,33 @@ func PhoneNumberCurrent(input string) bool {
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Scan()
+
 	_, err := strconv.Atoi(scanner.Text())
 	if err != nil {
-		fmt.Println("Error:", err)
+		if _, printErr := fmt.Fprintln(os.Stdout, "Error:", err); printErr != nil {
+			return
+		}
+
 		return
 	}
 
-	scanner.Scan()
+	if !scanner.Scan() {
+		return
+	}
+
 	input := scanner.Text()
+	if err := scanner.Err(); err != nil {
+		return
+	}
 
 	ok := PhoneNumberCurrent(input)
 	if ok {
-		fmt.Println("1")
+		if _, err := fmt.Fprintln(os.Stdout, "1"); err != nil {
+			return
+		}
 	} else {
-		fmt.Println("0")
+		if _, err := fmt.Fprintln(os.Stdout, "0"); err != nil {
+			return
+		}
 	}
 }

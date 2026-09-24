@@ -7,24 +7,49 @@ import (
 	"strconv"
 )
 
-func MaxCashBack(min, casback, sum int) int {
-	if sum < min {
+func MaxCashBack(minimum, cashbackRate, total int) int {
+	if total < minimum {
 		return 0
 	}
-	max := sum / min * casback
 
-	return max
+	return total / minimum * cashbackRate
 }
 
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
-	scanner.Scan()
-	min, _ := strconv.Atoi(scanner.Text())
-	scanner.Scan()
-	cashback, _ := strconv.Atoi(scanner.Text())
-	scanner.Scan()
-	sum, _ := strconv.Atoi(scanner.Text())
+	if !scanner.Scan() {
+		return
+	}
 
-	result := MaxCashBack(min, cashback, sum)
-	fmt.Println(result)
+	minimum, err := strconv.Atoi(scanner.Text())
+	if err != nil {
+		return
+	}
+
+	if !scanner.Scan() {
+		return
+	}
+
+	cashbackRate, err := strconv.Atoi(scanner.Text())
+	if err != nil {
+		return
+	}
+
+	if !scanner.Scan() {
+		return
+	}
+
+	total, err := strconv.Atoi(scanner.Text())
+	if err != nil {
+		return
+	}
+
+	if err := scanner.Err(); err != nil {
+		return
+	}
+
+	result := MaxCashBack(minimum, cashbackRate, total)
+	if _, err := fmt.Fprintln(os.Stdout, result); err != nil {
+		return
+	}
 }

@@ -80,4 +80,4 @@
 ## Файлы
 
 - Решение: [call_details_recovery.go](call_details_recovery.go)
-- Автоматические тесты: не добавлены
+- Тесты: [call_details_recovery_test.go](call_details_recovery_test.go)
