@@ -4,6 +4,11 @@ Tasks from the Algorithmic track of True Tech Champ 2026.
 
 ## Tasks
 
+- [Anisotropic Numbers](anisotropic_numbers/README.md)
+- [Beautiful Subsequences](beautiful_subsequences/README.md)
 - [Card Digits in Phone Number](card_in_phone_number/README.md)
+- [Dedicated Lines](dedicated_lines/README.md)
+- [Fair Play](fair_play/README.md)
+- [Locks and Unlocks](locks_and_unlocks/README.md)
 - [MWS-like Word](mws_like_word/README.md)
 - [Scooter or Walking](scooter_choice/README.md)
